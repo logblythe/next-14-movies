@@ -1,4 +1,4 @@
-import { getGenres } from "@/app/actions/getGenres";
+import { getGenres } from "@/actions/getGenres";
 import React from "react";
 import { IdName } from "./type";
 import { List } from "./List";

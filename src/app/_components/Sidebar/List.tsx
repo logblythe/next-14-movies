@@ -6,7 +6,7 @@ import PollIcon from "@/icons/PollIcon";
 import { STATIC_MOVIE_CATEGORIES } from "@/utils/constants/static-movie-categories";
 import Link from "next/link";
 import { IdName } from "./type";
-import { useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { QUERY_PARAMS } from "@/utils/constants/query-params";
 
 const renderIcon = (title: string) => {
@@ -29,9 +29,9 @@ export const List = ({
   title: "Genres" | "Discover";
   items: IdName[];
 }) => {
-  const pathname = useSearchParams();
-  const category = pathname.get(QUERY_PARAMS.CATEGORY);
-  const genre = pathname.get(QUERY_PARAMS.GENRE);
+  const searchParams = useSearchParams();
+  const category = searchParams.get(QUERY_PARAMS.CATEGORY);
+  const genre = searchParams.get(QUERY_PARAMS.GENRE);
 
   return (
     <div className="space-y-2 text-sm">
@@ -49,10 +49,11 @@ export const List = ({
             >
               <Link
                 href={{
+                  pathname: "/",
                   query:
                     title === "Genres"
                       ? {
-                          [QUERY_PARAMS.GENRE]: item.name,
+                          [QUERY_PARAMS.GENRE]: item.id,
                           [QUERY_PARAMS.PAGE]: 1,
                         }
                       : {

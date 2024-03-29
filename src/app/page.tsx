@@ -1,12 +1,30 @@
-import { redirect } from "next/navigation";
+import { SORT_BY_OPTIONS } from "@/utils/constants/sort-by-options";
+import { Metadata } from "next";
+import { notFound, redirect } from "next/navigation";
+import { getMoviesByGenre } from "../actions/getMoviesByGenre";
+import { MovieCard } from "./_components/MovieCard";
+import { Movie } from "@/types/movie-type";
+import { PaginatedResponse } from "@/types/paginated-response";
 
-export default function HomePage({
+export async function generateMetadata({
+  searchParams,
+}: PageProps): Promise<Metadata | null> {
+  const { category, genres } = searchParams;
+  if (category) {
+    return { title: `${category as string} movies` };
+  }
+  if (genres) {
+    return { title: `${genres as string} movies` };
+  }
+  return null;
+}
+
+export default async function HomePage({
   searchParams,
 }: {
   searchParams: { category: string; page: string; genres: string };
 }) {
   const { category, genres } = searchParams;
-  console.log("🚀 ~ searchParams:", searchParams);
 
   if (!category && !genres) {
     const searchParams = new URLSearchParams();
@@ -14,9 +32,23 @@ export default function HomePage({
     redirect(`/?${searchParams}`);
   }
 
+  const response = await getMoviesByGenre<PaginatedResponse<Movie>>(
+    genres,
+    "1",
+    SORT_BY_OPTIONS[0].value
+  );
+
+  if (!response) {
+    return notFound();
+  }
+
   return (
-    <main className="flex flex-col items-center justify-between">
-      {searchParams.page}-{searchParams.category}-{searchParams.genres}
+    <main>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8 lg:gap-12">
+        {response.results.map((result) => {
+          return <MovieCard key={result.id} {...result} />;
+        })}
+      </div>
     </main>
   );
 }

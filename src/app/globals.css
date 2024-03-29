@@ -6,6 +6,10 @@
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --background-blend-gradient: linear-gradient(
+    rgba(255, 255, 255, 0) 68%,
+    rgb(255, 255, 255) 100%
+  );
 }
 
 @media (prefers-color-scheme: dark) {
