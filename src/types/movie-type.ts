@@ -1,3 +1,5 @@
+import { IdName } from "@/app/_components/Sidebar/type";
+
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
@@ -13,4 +15,6 @@ export type Movie = {
   video: boolean;
   vote_average: number;
   vote_count: number;
+  tagline?: string;
+  genres?: IdName[];
 };
