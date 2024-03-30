@@ -1,3 +1,4 @@
+import BackButton from "@/components/ui/BackButton";
 import { TMDB_IMAGE_BASE_URL } from "@/config/tmbd";
 import { PersonType } from "@/types/person-type";
 import Image from "next/image";
@@ -31,6 +32,9 @@ export const PersonalDetails = ({ person }: { person: PersonType }) => {
           <p className="font-light text-base text-gray-400">
             {person.biography}
           </p>
+        </div>
+        <div className="flex justify-end">
+          <BackButton />
         </div>
       </div>
     </div>

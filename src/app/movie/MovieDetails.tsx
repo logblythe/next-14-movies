@@ -1,13 +1,19 @@
+import BackButton from "@/components/ui/BackButton";
+import OutlineButton from "@/components/ui/OutlineButton";
+import { IMDB_TITLE_URL } from "@/config/imdb";
 import { TMDB_IMAGE_BASE_URL } from "@/config/tmbd";
 import DotCircleIcon from "@/icons/DotCircleIcon";
+import ImdbIcon from "@/icons/ImdbIcon";
+import LinkIcon from "@/icons/LinkIcon";
+import PlayIcon from "@/icons/PlayIcon";
 import { Movie } from "@/types/movie-type";
 import { QUERY_PARAMS } from "@/utils/constants/query-params";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 import MovieCast from "./MovieCast";
 
 const MovieDetails = (movie: Movie) => {
+  console.log("movie.homepage", movie.homepage);
   return (
     <div className="grid grid-cols-5 max-w-[1200px] mx-auto">
       <div className="place-self-end col-span-2 p-10">
@@ -66,6 +72,28 @@ const MovieDetails = (movie: Movie) => {
         <div className="mb-8">
           <h3 className="uppercase text-base font-semibold mb-3">the cast</h3>
           <MovieCast movieId={String(movie.id)} />
+        </div>
+
+        <div className="flex space-x-8">
+          {movie.homepage ? (
+            <OutlineButton href={movie.homepage}>
+              <span>Website</span>
+              <LinkIcon fill="currentColor" width="1em" />
+            </OutlineButton>
+          ) : null}
+          {movie.imdb_id ? (
+            <OutlineButton href={`${IMDB_TITLE_URL}/${movie.imdb_id}`}>
+              <span>IMDB</span>
+              <ImdbIcon fill="currentColor" width="1em" />
+            </OutlineButton>
+          ) : null}
+          <OutlineButton href={"/"}>
+            <span>Trailer</span>
+            <PlayIcon fill="currentColor" width="1em" />
+          </OutlineButton>
+          <div className="flex flex-1 justify-end">
+            <BackButton />
+          </div>
         </div>
       </div>
     </div>

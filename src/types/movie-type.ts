@@ -17,4 +17,6 @@ export type Movie = {
   vote_count: number;
   tagline?: string;
   genres?: IdName[];
+  homepage?: string;
+  imdb_id?: string;
 };

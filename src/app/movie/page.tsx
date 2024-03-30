@@ -1,9 +1,8 @@
 import { getMovieById } from "@/actions/getMovieById";
 import { Movie } from "@/types/movie-type";
-import { notFound } from "next/navigation";
-import React from "react";
-import MovieDetails from "./MovieDetails";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import MovieDetails from "./MovieDetails";
 import { RecommendedMovies } from "./RecommendMovies";
 
 export async function generateMetadata({
