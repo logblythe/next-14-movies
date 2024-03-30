@@ -5,6 +5,7 @@ import { QUERY_PARAMS } from "@/utils/constants/query-params";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import MovieCast from "./MovieCast";
 
 const MovieDetails = (movie: Movie) => {
   return (
@@ -60,6 +61,11 @@ const MovieDetails = (movie: Movie) => {
             the synopsis
           </h3>
           <p className="font-light text-base text-gray-400">{movie.overview}</p>
+        </div>
+
+        <div className="mb-8">
+          <h3 className="uppercase text-base font-semibold mb-3">the cast</h3>
+          <MovieCast movieId={String(movie.id)} />
         </div>
       </div>
     </div>
