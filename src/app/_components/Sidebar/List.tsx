@@ -32,6 +32,7 @@ export const List = ({
   const searchParams = useSearchParams();
   const category = searchParams.get(QUERY_PARAMS.CATEGORY);
   const genre = searchParams.get(QUERY_PARAMS.GENRE);
+  const genreName = searchParams.get(QUERY_PARAMS.NAME);
 
   return (
     <div className="space-y-2 text-sm">
@@ -42,7 +43,7 @@ export const List = ({
             <li
               key={item.id}
               className={`${
-                item.name === genre || item.name === category
+                item.name === category || item.name === genreName
                   ? "text-[#b80040]"
                   : "text-[#41ead4]"
               }`}
@@ -55,6 +56,7 @@ export const List = ({
                       ? {
                           [QUERY_PARAMS.GENRE]: item.id,
                           [QUERY_PARAMS.PAGE]: 1,
+                          [QUERY_PARAMS.NAME]: item.name,
                         }
                       : {
                           [QUERY_PARAMS.CATEGORY]: item.name,
