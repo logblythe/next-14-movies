@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { PropsWithChildren } from "react";
+import { UrlObject } from "url";
 
 type Props = {
-  href: string;
+  href: string | UrlObject;
 };
 
 const OutlineButton = ({ children, href }: PropsWithChildren<Props>) => {

@@ -13,7 +13,6 @@ import Link from "next/link";
 import MovieCast from "./MovieCast";
 
 const MovieDetails = (movie: Movie) => {
-  console.log("movie.homepage", movie.homepage);
   return (
     <div className="grid grid-cols-5 max-w-[1200px] mx-auto">
       <div className="place-self-end col-span-2 p-10">

@@ -18,7 +18,7 @@ export async function getPersonMovies<T>(
       })
       .then((res) => res.data);
   } catch (error) {
-    console.log("🚀 ~ getPersonMovies error:", error);
+    console.error("🚀 ~ getPersonMovies error:", error);
     throw error;
   }
 }

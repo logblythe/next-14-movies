@@ -7,7 +7,7 @@ export async function getCredits<T>(movieId: string): Promise<T> {
       .get<T>(`/${TMDB_API_VERSION}/movie/${movieId}/credits`)
       .then((res) => res.data);
   } catch (error) {
-    console.log("[getCredits] error => ", error);
+    console.error("[getCredits] error => ", error);
     throw error;
   }
 }

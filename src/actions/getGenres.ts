@@ -7,7 +7,7 @@ export function getGenres<T>(): Promise<T> {
       .get<T>(`/${TMDB_API_VERSION}/genre/movie/list`)
       .then((response) => response.data);
   } catch (error) {
-    console.log("[getGenres] error => ", error);
+    console.error("[getGenres] error => ", error);
     throw error;
   }
 }
