@@ -1,8 +1,7 @@
 import { getRecommendedMovies } from "@/actions/getRecommendedMovies";
 import { Movie } from "@/types/movie-type";
 import { PaginatedResponse } from "@/types/paginated-response";
-import React from "react";
-import { MovieCard } from "../_components/MovieCard";
+import MovieGrid from "../_components/MovieGrid";
 
 export const RecommendedMovies = async ({
   id,
@@ -25,11 +24,7 @@ export const RecommendedMovies = async ({
         <div>RECOMMENDED</div>
         <div className="text-sm font-light">Movies</div>
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 md:gap-8 lg:gap-12">
-        {recommendedMovies.results.map((result) => {
-          return <MovieCard key={result.id} {...result} />;
-        })}
-      </div>
+      <MovieGrid response={recommendedMovies} />
     </div>
   );
 };
